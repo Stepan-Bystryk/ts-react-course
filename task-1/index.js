@@ -1,32 +1,55 @@
-// Array.prototype.customForEach ...
-const arr1 = [1, 2, 3, 4, 5]
-
-arr1.forEach(function(el, index, array) {
-    console.log(el);
-})
-
 // Array.prototype.customMap ...
-const arr2 = [1, 2, 3, 4, 5]
-const newArr2 = arr2.map(el => {
-    return el
-})
-console.log(newArr2);
+const callback = (el, index, arr) => {}
+
+Array.prototype.customMap = (callbackFunk) => {
+    const newArr = []
+
+    for (let i = 0; i < this.length; i++) {
+        const newElement = callbackFunk(this[i], i, this)
+        newArr.push(newElement)
+    }
+    return newArr
+}
+
+const arr = [1, 2, 3]
+arr.customMap()
+
+// Array.prototype.customForEach ...
+Array.prototype.customForEach = (callback) => {
+    for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    callback(this[i], i, this);
+    }
+}
 
 // Array.prototype.customReduce ...
-const arr3 = [1, 2, 3, 4, 5]
-const amount = arr3.reduce((total, el) => {
-    return total + el
-}, 0)
-console.log(amount);
+const callbackR = (acc, el, index, arr) => {}
+Array.prototype.customReduce = (callback, initialValue) => {
+    let acc, startIndex
+    if (initialValue === undefined) {
+        acc = this[0]
+        startIndex = 1
+    } else {
+        acc = initialValue
+        startIndex = 0
+    }
+    for (let index = startIndex; index < this.length; index++) {
+        acc = callback(acc, this[i], i, this)
+    }
+    return acc
+}
 
-// Array.prototype.customFind ...
-const arr4 = [
-    { name: 'Nicole' },
-    { name: 'Foster' },
-    { name: 'Stewie' }
-]
-const stewie = arr4.find(person => person.name === 'Stewie')
-console.log(stewie);
+// Array.prototype.customFilter ...
+Array.prototype.customReduce = (callback) => {
+    const newArr = []
+
+    for (let i = 0; i < this.length; i ++) {
+        if(callback(this[i], i, this)) {
+            newArr.push(this[i])
+        }
+    }
+    return newArr
+}
 
 // main task ...
 const subjects = {
@@ -83,10 +106,9 @@ arrSubjects.forEach(([key, value]) => {
 console.log(totalStuff);
 
 // task 5
-let arrSorting = [];
+const sortedTeachers = Object.entries(subjects).sort((a, b) => {
+    const numberTeachersA = a[i].teachers
+    const numberTeachersB = b[i].teachers
 
-arrSubjects.forEach(([key, value]) => {
-    arrSorting.push(value);
-    arrSorting.sort((end, begin) => begin.teachers - end.teachers); // верна ли запись ?
-})
-console.log(arrSorting);
+    return numberTeachersB - numberTeachersA
+}).map((subjectData) => subjectData[0])
