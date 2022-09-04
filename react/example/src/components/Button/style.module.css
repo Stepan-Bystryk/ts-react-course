@@ -1,0 +1,25 @@
+.button {
+  width: 100px;
+  height: 25px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 20px 30px;
+  margin: 10px 20px;
+  border-radius: 10px;
+}
+
+.first {
+  background-color: rgb(216, 122, 180);
+  color: white;
+}
+
+.second {
+  background-color: gray;
+  color: white;
+}
+
+.third {
+  background-color: transparent;
+  color: red;
+}
