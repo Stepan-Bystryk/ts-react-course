@@ -1,0 +1,10 @@
+h3 {
+  display: flex;
+}
+
+.wrapper {
+  display: flex;
+  border: 1px solid;
+  padding: 5px;
+  width: 200px;
+}
